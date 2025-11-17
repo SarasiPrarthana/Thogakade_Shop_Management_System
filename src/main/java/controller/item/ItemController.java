@@ -38,4 +38,26 @@ public class ItemController implements ItemService{
         }
         return itemDetails;
     }
+
+    @Override
+    public void addItemDetails(String itemCode, String description, String packSize, double unitPrice, int qtyOnHand) {
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            String SQL = "Insert INTO Item VALUES(?,?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setObject(1, itemCode);
+            preparedStatement.setObject(2, description);
+            preparedStatement.setObject(3, packSize);
+            preparedStatement.setObject(4, unitPrice);
+            preparedStatement.setObject(5, qtyOnHand);
+
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
