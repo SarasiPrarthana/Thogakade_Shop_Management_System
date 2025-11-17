@@ -1,183 +1,81 @@
 package controller.customer;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.dto.CustomerInfoDTO;
 
-public class CustomerFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CustomerFormController implements Initializable {
+
+    CustomerService customerService = new CustomerController();
+
+    ObservableList<CustomerInfoDTO> customerInfoDTOS = FXCollections.observableArrayList();
 
     @FXML
     private TableColumn<?, ?> colAddress;
 
     @FXML
-    private TableColumn<?, ?> colAddress1;
-
-    @FXML
-    private TableColumn<?, ?> colAddress2;
-
-    @FXML
     private TableColumn<?, ?> colCity;
-
-    @FXML
-    private TableColumn<?, ?> colCity1;
-
-    @FXML
-    private TableColumn<?, ?> colCity2;
 
     @FXML
     private TableColumn<?, ?> colDOB;
 
     @FXML
-    private TableColumn<?, ?> colDOB1;
-
-    @FXML
-    private TableColumn<?, ?> colDOB2;
-
-    @FXML
     private TableColumn<?, ?> colID;
-
-    @FXML
-    private TableColumn<?, ?> colID1;
-
-    @FXML
-    private TableColumn<?, ?> colID2;
 
     @FXML
     private TableColumn<?, ?> colName;
 
     @FXML
-    private TableColumn<?, ?> colName1;
-
-    @FXML
-    private TableColumn<?, ?> colName2;
-
-    @FXML
     private TableColumn<?, ?> colPostalCode;
-
-    @FXML
-    private TableColumn<?, ?> colPostalCode1;
-
-    @FXML
-    private TableColumn<?, ?> colPostalCode2;
 
     @FXML
     private TableColumn<?, ?> colProvince;
 
     @FXML
-    private TableColumn<?, ?> colProvince1;
-
-    @FXML
-    private TableColumn<?, ?> colProvince2;
-
-    @FXML
     private TableColumn<?, ?> colSalary;
-
-    @FXML
-    private TableColumn<?, ?> colSalary1;
-
-    @FXML
-    private TableColumn<?, ?> colSalary2;
 
     @FXML
     private TableColumn<?, ?> colTitle;
 
     @FXML
-    private TableColumn<?, ?> colTitle1;
-
-    @FXML
-    private TableColumn<?, ?> colTitle2;
-
-    @FXML
     private TextField txtAddress;
-
-    @FXML
-    private TextField txtAddress1;
-
-    @FXML
-    private TextField txtAddress2;
 
     @FXML
     private TextField txtCity;
 
     @FXML
-    private TextField txtCity1;
-
-    @FXML
-    private TextField txtCity2;
-
-    @FXML
     private TextField txtCustID;
-
-    @FXML
-    private TextField txtCustID1;
-
-    @FXML
-    private TextField txtCustID2;
 
     @FXML
     private TextField txtDOB;
 
     @FXML
-    private TextField txtDOB1;
-
-    @FXML
-    private TextField txtDOB2;
-
-    @FXML
     private TextField txtName;
-
-    @FXML
-    private TextField txtName1;
-
-    @FXML
-    private TextField txtName2;
 
     @FXML
     private TextField txtPostalCode;
 
     @FXML
-    private TextField txtPostalCode1;
-
-    @FXML
-    private TextField txtPostalCode2;
-
-    @FXML
     private TextField txtProvince;
-
-    @FXML
-    private TextField txtProvince1;
-
-    @FXML
-    private TextField txtProvince2;
 
     @FXML
     private TextField txtSalary;
 
     @FXML
-    private TextField txtSalary1;
-
-    @FXML
-    private TextField txtSalary2;
-
-    @FXML
-    private TableView<?> txtTbl;
-
-    @FXML
-    private TableView<?> txtTbl1;
-
-    @FXML
-    private TableView<?> txtTbl2;
+    private TableView<CustomerInfoDTO> txtTbl;
 
     @FXML
     private TextField txtTitle;
-
-    @FXML
-    private TextField txtTitle1;
-
-    @FXML
-    private TextField txtTitle2;
 
     @FXML
     void btnAddAction(ActionEvent event) {
@@ -199,4 +97,36 @@ public class CustomerFormController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        colID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        colID.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colID.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colID.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colID.setCellValueFactory(new PropertyValueFactory<>("salary"));
+        colID.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colID.setCellValueFactory(new PropertyValueFactory<>("city"));
+        colID.setCellValueFactory(new PropertyValueFactory<>("province"));
+        colID.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+
+        loadCustomerDetails();
+
+        txtTbl.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+
+            if (newValue != null) {
+                txtCustID.setText(newValue.getCustomerID());
+                txtTitle.setText(newValue.getTitle());
+                txtName.setText(newValue.getName());
+                txtDOB.setText(newValue.getDob());
+                txtSalary.setText(String.valueOf(newValue.getSalary()));
+                txtAddress.setText(newValue.getAddress());
+                txtCity.setText(newValue.getCity());
+                txtProvince.setText(newValue.getProvince());
+                txtPostalCode.setText(newValue.getPostalCode());
+
+            }
+        });
+
+    }
 }
