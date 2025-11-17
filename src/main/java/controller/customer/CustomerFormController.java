@@ -81,14 +81,14 @@ public class CustomerFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         colID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-        colID.setCellValueFactory(new PropertyValueFactory<>("title"));
-        colID.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colID.setCellValueFactory(new PropertyValueFactory<>("dob"));
-        colID.setCellValueFactory(new PropertyValueFactory<>("salary"));
-        colID.setCellValueFactory(new PropertyValueFactory<>("address"));
-        colID.setCellValueFactory(new PropertyValueFactory<>("city"));
-        colID.setCellValueFactory(new PropertyValueFactory<>("province"));
-        colID.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colDOB.setCellValueFactory(new PropertyValueFactory<>("dob"));
+        colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+        colProvince.setCellValueFactory(new PropertyValueFactory<>("province"));
+        colPostalCode.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
 
         loadCustomerDetails();
 
@@ -131,6 +131,16 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void btnClearAction(ActionEvent event) {
+
+        txtCustID.setText("");
+        txtTitle.setText("");
+        txtName.setText("");
+        txtDOB.setText("");
+        txtSalary.setText("");
+        txtAddress.setText("");
+        txtCity.setText("");
+        txtProvince.setText("");
+        txtPostalCode.setText("");
 
     }
 
