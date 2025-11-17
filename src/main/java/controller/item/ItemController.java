@@ -60,4 +60,20 @@ public class ItemController implements ItemService{
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void deleteItemDetails(String ItemCode) {
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement pstm = connection.prepareStatement("DELETE FROM Item WHERE ItemCode = ?");
+
+            pstm.setObject(1, ItemCode);
+            pstm.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

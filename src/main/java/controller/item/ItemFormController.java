@@ -94,10 +94,20 @@ public class ItemFormController implements Initializable {
     @FXML
     void btnClearAction(ActionEvent event) {
 
+        txtItemCode.setText("");
+        txtDescription.setText("");
+        txtPackSize.setText("");
+        txtUnitPrice.setText("");
+        txtQtyOnHand.setText("");
+
     }
 
     @FXML
     void btnDeleteAction(ActionEvent event) {
+
+        itemService.deleteItemDetails(txtItemCode.getText());
+        clearFields();
+        loadItemDetails();
 
     }
 
