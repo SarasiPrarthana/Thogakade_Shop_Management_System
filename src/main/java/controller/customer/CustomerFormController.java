@@ -77,26 +77,6 @@ public class CustomerFormController implements Initializable {
     @FXML
     private TextField txtTitle;
 
-    @FXML
-    void btnAddAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnClearAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDeleteAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnUpdateAction(ActionEvent event) {
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -127,6 +107,58 @@ public class CustomerFormController implements Initializable {
 
             }
         });
+    }
 
+    @FXML
+    void btnAddAction(ActionEvent event) {
+
+//        String customerID = txtCustID.getText();
+//        String title = txtTitle.getText();
+//        String name = txtName.getText();
+//        String dob = txtDOB.getText();
+//        double salary = Double.parseDouble(txtSalary.getText());
+//        String address = txtAddress.getText();
+//        String city = txtCity.getText();
+//        String province = txtProvince.getText();
+//        String postalCode = txtPostalCode.getText();
+//
+////        CustomerController customerController  = new CustomerController();
+//        customerService.addCustomerDetails(customerID,title,name,dob,salary,address,city,province,postalCode);
+//        loadCustomerDetails();
+//        clearFields();
+
+    }
+
+    @FXML
+    void btnClearAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnDeleteAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnUpdateAction(ActionEvent event) {
+
+    }
+
+    private void loadCustomerDetails() {
+
+        customerInfoDTOS.clear();
+        txtTbl.setItems(customerService.loadCustomerDetails());
+    }
+
+    public void clearFields(){
+        txtCustID.clear();
+        txtTitle.clear();
+        txtName.clear();
+        txtDOB.clear();
+        txtSalary.clear();
+        txtAddress.clear();
+        txtCity.clear();
+        txtProvince.clear();
+        txtPostalCode.clear();
     }
 }
