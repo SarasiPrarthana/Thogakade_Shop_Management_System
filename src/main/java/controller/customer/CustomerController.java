@@ -81,5 +81,30 @@ public class CustomerController implements CustomerService{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+    }
+    public void updateCustomerDetails(String customerID, String title, String name, String dob, double salary, String address, String city, String province, String postalCode) {
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            String SQL = "UPDATE Customer SET CustTitle=?, CustName=?, DOB=?, salary=?, CustAddress=?, City=?, Province=?, PostalCode=? WHERE CustID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setObject(1, title);
+            preparedStatement.setObject(2, name);
+            preparedStatement.setObject(3, dob);
+            preparedStatement.setObject(4, salary);
+            preparedStatement.setObject(5, address);
+            preparedStatement.setObject(6, city);
+            preparedStatement.setObject(7, province);
+            preparedStatement.setObject(8, postalCode);
+            preparedStatement.setObject(9, customerID);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
