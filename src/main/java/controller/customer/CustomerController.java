@@ -67,4 +67,19 @@ public class CustomerController implements CustomerService{
             throw new RuntimeException(e);
         }
     }
+
+    public void deleteCustomerDetails(String customerId) {
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            PreparedStatement pstm = connection.prepareStatement("DELETE FROM Customer WHERE CustID = ?");
+
+            pstm.setObject(1, customerId);
+            pstm.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
