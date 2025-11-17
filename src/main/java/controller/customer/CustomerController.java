@@ -11,30 +11,6 @@ import java.sql.SQLException;
 
 public class CustomerController implements CustomerService{
 
-//    public void addCustomerDetails(String customerID, String title, String name, String dob, double salary, String address, String city, String province, String postalCode) {
-//        try {
-//            Connection connection = DBConnection.getInstance().getConnection();
-//
-//            String SQL = "Insert INTO Customer VALUES(?,?,?,?,?,?,?,?,?)";
-//            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-//
-//            preparedStatement.setObject(1, customerID);
-//            preparedStatement.setObject(2, title);
-//            preparedStatement.setObject(3, name);
-//            preparedStatement.setObject(4, dob);
-//            preparedStatement.setObject(5, salary);
-//            preparedStatement.setObject(6, address);
-//            preparedStatement.setObject(7, city);
-//            preparedStatement.setObject(8, province);
-//            preparedStatement.setObject(9, postalCode);
-//
-//            preparedStatement.execute();
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     @Override
     public ObservableList<CustomerInfoDTO> loadCustomerDetails() {
 
@@ -49,12 +25,12 @@ public class CustomerController implements CustomerService{
             while (resultSet.next()) {
                 customerDetails.add(new CustomerInfoDTO(
 
-                                resultSet.getString("CustomerID"),
-                                resultSet.getString("Title"),
-                                resultSet.getString("Name"),
-                                resultSet.getString("DateOfBirth"),
-                                resultSet.getDouble("Salary"),
-                                resultSet.getString("Address"),
+                                resultSet.getString("CustID"),
+                                resultSet.getString("CustTitle"),
+                                resultSet.getString("CustName"),
+                                resultSet.getString("DOB"),
+                                resultSet.getDouble("salary"),
+                                resultSet.getString("CustAddress"),
                                 resultSet.getString("City"),
                                 resultSet.getString("Province"),
                                 resultSet.getString("PostalCode")
@@ -66,5 +42,29 @@ public class CustomerController implements CustomerService{
             throw new RuntimeException(e);
         }
         return customerDetails;
+    }
+
+    public void addCustomerDetails(String customerID, String title, String name, String dob, double salary, String address, String city, String province, String postalCode) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            String SQL = "Insert INTO Customer VALUES(?,?,?,?,?,?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setObject(1, customerID);
+            preparedStatement.setObject(2, title);
+            preparedStatement.setObject(3, name);
+            preparedStatement.setObject(4, dob);
+            preparedStatement.setObject(5, salary);
+            preparedStatement.setObject(6, address);
+            preparedStatement.setObject(7, city);
+            preparedStatement.setObject(8, province);
+            preparedStatement.setObject(9, postalCode);
+
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
