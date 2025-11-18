@@ -10,6 +10,6 @@ public interface OrderService {
 
     void addOrderDetails(String orderID,String date,String customerID);
 
-//    void deleteItemDetails(String ItemCode);
+    void deleteOrderDetails(String OrderID);
 
 }

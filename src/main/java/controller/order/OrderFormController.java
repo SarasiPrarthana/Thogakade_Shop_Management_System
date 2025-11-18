@@ -82,6 +82,9 @@ public class OrderFormController implements Initializable {
     @FXML
     void btnDeleteAction(ActionEvent event) {
 
+        orderService.deleteOrderDetails(txtOrderID.getText());
+        clearFields();
+        loadOrderDetails();
     }
 
     @FXML
