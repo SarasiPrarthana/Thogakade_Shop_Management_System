@@ -83,11 +83,18 @@ public class OrderDetailFormController implements Initializable {
     @FXML
     void btnClearAction(ActionEvent event) {
 
+        txtOrderID.setText("");
+        txtItemCode.setText("");
+        txtOrderQty.setText("");
+        txtDiscount.setText("");
     }
 
     @FXML
     void btnDeleteAction(ActionEvent event) {
 
+        orderDetailService.deleteOrderDetails(txtOrderID.getText());
+        clearFields();
+        loadOrderDetails();
     }
 
     @FXML

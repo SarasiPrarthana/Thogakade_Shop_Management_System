@@ -60,4 +60,19 @@ public class OrderDetailController implements OrderDetailService{
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void deleteOrderDetails(String OrderID) {
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement pstm = connection.prepareStatement("DELETE FROM OrderDetail WHERE OrderID = ?");
+
+            pstm.setObject(1, OrderID);
+            pstm.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
