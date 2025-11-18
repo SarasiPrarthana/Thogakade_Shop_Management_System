@@ -11,4 +11,6 @@ public interface OrderDetailService {
 
     void deleteOrderDetails(String OrderID);
 
+    void updateOrderDetails(String orderID,String itemCode,int orderQTY,int discount);
+
 }

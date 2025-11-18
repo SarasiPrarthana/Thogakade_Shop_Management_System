@@ -100,6 +100,15 @@ public class OrderDetailFormController implements Initializable {
     @FXML
     void btnUpdateAction(ActionEvent event) {
 
+        String orderID = txtOrderID.getText();
+        String itemCode = txtItemCode.getText();
+        int orderQTY = Integer.parseInt(txtOrderQty.getText());
+        int discount = Integer.parseInt(txtDiscount.getText());
+
+        orderDetailService.updateOrderDetails(orderID,itemCode,orderQTY,discount);
+        loadOrderDetails();
+        clearFields();
+
     }
 
     private void loadOrderDetails() {
