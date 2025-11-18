@@ -39,4 +39,25 @@ public class OrderDetailController implements OrderDetailService{
         }
         return itemDetails;
     }
+
+    @Override
+    public void addOrderDetails(String orderID, String itemCode, int orderQTY, int discount) {
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+
+            String SQL = "Insert INTO OrderDetail VALUES(?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setObject(1, orderID);
+            preparedStatement.setObject(2, itemCode);
+            preparedStatement.setObject(3, orderQTY);
+            preparedStatement.setObject(4, discount);
+
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

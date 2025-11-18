@@ -6,4 +6,6 @@ import model.dto.OrderDetailInfoDTO;
 public interface OrderDetailService {
 
     ObservableList<OrderDetailInfoDTO> loadOrderDetails();
+
+    void addOrderDetails(String orderID,String itemCode,int orderQTY,int discount);
 }
