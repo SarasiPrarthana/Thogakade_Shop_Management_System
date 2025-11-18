@@ -12,4 +12,7 @@ public interface OrderService {
 
     void deleteOrderDetails(String OrderID);
 
+    void updateOrderDetails(String orderID,String date,String customerID);
+
+
 }

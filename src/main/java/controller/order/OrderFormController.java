@@ -90,6 +90,14 @@ public class OrderFormController implements Initializable {
     @FXML
     void btnUpdateAction(ActionEvent event) {
 
+        String orderID = txtOrderID.getText();
+        String date = txtOrderDate.getText();
+        String customerID = txtCustID.getText();
+
+        orderService.updateOrderDetails(orderID,date,customerID);
+        loadOrderDetails();
+        clearFields();
+
     }
 
     private void loadOrderDetails() {
